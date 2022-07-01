@@ -28,10 +28,14 @@ class Category
     private $Image;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $SubCategory;
 
     #[ORM\OneToMany(mappedBy: 'SubCategory', targetEntity: self::class)]
     private $categories;
+
+    #[ORM\Column(type: 'boolean')]
+    private $IsValid;
 
     public function __construct()
     {
@@ -118,6 +122,18 @@ class Category
                 $category->setSubCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsValid(): ?bool
+    {
+        return $this->IsValid;
+    }
+
+    public function setIsValid(bool $IsValid): self
+    {
+        $this->IsValid = $IsValid;
 
         return $this;
     }

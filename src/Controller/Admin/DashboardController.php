@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Articles;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,10 +16,9 @@ class DashboardController extends AbstractDashboardController
 {
     
     
-    public function __construct(AdminUrlGenerator $AdminUrlGenerator)
-    {
-        $this->AdminUrlGenerator = $AdminUrlGenerator;
-    }
+    public function __construct(
+        Private AdminUrlGenerator $AdminUrlGenerator
+        ){}
 
     #[Route('/admin', name: 'admin')]
     public function index(): Response
@@ -44,7 +44,10 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Créer une catégorie', 'fas fa-plus', Category::class)->setAction(Crud::PAGE_NEW)
         ]);
 
-        yield MenuItem::section('***');
+        yield MenuItem::section('Articles');
+        yield MenuItem::SubMenu('Articles', 'fas fa-plus')->setSubItems([
+            MenuItem::linkToCrud('Créer un Articles', 'fas fa-plus', Articles::class)->setAction(Crud::PAGE_NEW)
+        ]);        
 
         yield MenuItem::section('****');
 

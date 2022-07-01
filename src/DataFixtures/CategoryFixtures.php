@@ -213,6 +213,7 @@ class CategoryFixtures extends Fixture
             $category->setName($value['name']);
             $category->setSlug($value['slug']);
             $category->setImage($value['picture']);
+            $category->setIsValid('1');
             $manager->persist($category);
 
             foreach ($value['sc'] as $subcat) { 
@@ -220,6 +221,7 @@ class CategoryFixtures extends Fixture
                 $subcategorie->setName($subcat['name']);
                 $subcategorie->setSlug($subcat['slug']);
                 $subcategorie->setImage($subcat['picture']);
+                $subcategorie->setIsValid('1');
                 $subcategorie->setSubCategory($category);
                 $manager->persist($subcategorie);
             }
