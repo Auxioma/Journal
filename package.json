@@ -26,5 +26,8 @@
     },
     "browserslist": [
         "defaults"
-    ]
+    ],
+    "dependencies": {
+        "owl.carousel": "^2.3.4"
+    }
 }

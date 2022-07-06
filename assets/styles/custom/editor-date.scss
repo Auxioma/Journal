@@ -1,0 +1,24 @@
+.td-editor-date {
+    & .editor {
+        & a {
+            font-family: var(--Montserrat);
+            font-size: var(--eleven);
+            margin-bottom: 7px;
+            line-height: 1;
+            min-height: 17px;
+            color: var(--black);
+            font-weight: bold;
+        }
+        & a:hover {
+            color: var(--yellow);
+        }
+    } 
+    & .date-publish {
+        color: #767676;
+        top: 2px;
+        font-size: 11px;
+        margin-bottom: 7px;
+        line-height: 1;
+        min-height: 17px;
+    }
+}
