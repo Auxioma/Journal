@@ -49,7 +49,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Créer un Articles', 'fas fa-plus', Articles::class)->setAction(Crud::PAGE_NEW)
         ]);        
 
-        yield MenuItem::section('****');
+        yield MenuItem::section('Mes Vidéos');
 
 
     }

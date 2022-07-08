@@ -267,3 +267,106 @@ a {
     border-radius: 20px;     
     border: 3px solid var(--gris);
 }
+
+// rand-listing
+// ============
+.rand-listing {
+    border-bottom: 2px solid var(--black);
+    & h1 {
+        font-size: var(--forteen);
+        color: var(--write);
+        & span {
+            background-color: var(--black);
+            padding: 7px 12px 4px;
+            line-height: 17px;
+        }
+    }
+}
+.block-rand-listing {
+    & h2 {
+        font-family: var(--Montserrat);
+        font-size: 16px;
+        margin: 0 0 6px;
+        word-wrap: break-word;
+        & a {
+            color: var(--gris);
+        } 
+        & a:hover {
+            color: var(--yellow);
+        }
+    }
+    & .comment {
+        margin-top: 16px;
+        margin: 20px 0 0;
+        line-height: 21px;
+        font-size: 13px;
+        color: var(--gris);
+        font-family: var(--Roboto);
+        margin-top: 9px;
+    }
+}
+
+// the article the most read
+// =========================
+.most-read {
+    border-bottom: 2px solid var(--black);
+    & h1 {
+        font-size: var(--forteen);
+        color: var(--write);
+        & span {
+            background-color: var(--black);
+            padding: 7px 12px 4px;
+            line-height: 17px;
+        }
+    }
+}
+.block-most-read {
+    & .card {
+        border: none;
+    }
+    & h2 {
+        font-family: var(--Montserrat);
+        font-size: 16px;
+        line-height: 25px;
+        margin: 0 0 6px;
+        word-wrap: break-word;
+        & a {
+            color: var(--gris);
+        } 
+        & a:hover {
+            color: var(--yellow);
+        }
+    }
+}
+// ///////////////////////////////////////////@at-root
+
+.icone {
+    & span {
+        bottom: 0;
+        left: 13px;
+        padding: 3px 5px 3px 5px;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 1;
+        background-color: #222;
+        color: #fff;
+        margin-right: 5px;
+        padding: 3px 6px 4px;
+        transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+    }
+}
+.top-article {
+    & h2 {
+        font-family: var(--Montserrat);
+        font-size: 16px;
+        margin: 0 0 6px;
+        word-wrap: break-word;
+        & a {
+            color: var(--gris);
+        } 
+        & a:hover {
+            color: var(--yellow);
+        }
+    }
+}
