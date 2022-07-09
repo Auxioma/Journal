@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('fr_FR');
 
         // Je met 50 User
         for( $i=0; $i <= 49; $i++ ) {
@@ -31,9 +31,12 @@ class UserFixtures extends Fixture
             $user->setIsVerified('1');
 
             $manager->persist($user);
+
+            $this->addReference('user_'.$i, $user);
             
         }
 
         $manager->flush();
+        
     }
 }

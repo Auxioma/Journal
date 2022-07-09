@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\CreatedAtTrait;
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\UpdatedAtTrait;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
     use CreatedAtTrait;
-    
+    use UpdatedAtTrait;
+        
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -37,10 +39,14 @@ class Category
     #[ORM\Column(type: 'boolean')]
     private $IsValid;
 
+    #[ORM\ManyToMany(targetEntity: Articles::class, mappedBy: 'Catagory')]
+    private $Articles;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->CreatedAt = new \DateTimeImmutable();
+        $this->Articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,6 +140,33 @@ class Category
     public function setIsValid(bool $IsValid): self
     {
         $this->IsValid = $IsValid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Articles>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->Articles;
+    }
+
+    public function addArticle(Articles $article): self
+    {
+        if (!$this->Articles->contains($article)) {
+            $this->Articles[] = $article;
+            $article->addCatagory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Articles $article): self
+    {
+        if ($this->Articles->removeElement($article)) {
+            $article->removeCatagory($this);
+        }
 
         return $this;
     }

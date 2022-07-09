@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticlesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\UpdatedAtTrait;
+use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ArticlesRepository::class)]
 class Articles
 {
+    use CreatedAtTrait;
+    use UpdatedAtTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -23,12 +28,6 @@ class Articles
 
     #[ORM\Column(type: 'string', length: 255)]
     private $Slug;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $CreatedAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $UpdatedAt;
 
     #[ORM\Column(type: 'boolean')]
     private $IsValid;
@@ -45,10 +44,18 @@ class Articles
     #[ORM\OneToMany(mappedBy: 'Articles', targetEntity: Comments::class, orphanRemoval: true)]
     private $comments;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'Articles')]
+    private $Catagory;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->Catagory = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,30 +95,6 @@ class Articles
     public function setSlug(string $Slug): self
     {
         $this->Slug = $Slug;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->CreatedAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
-    {
-        $this->CreatedAt = $CreatedAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->UpdatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $UpdatedAt): self
-    {
-        $this->UpdatedAt = $UpdatedAt;
 
         return $this;
     }
@@ -208,6 +191,42 @@ class Articles
                 $comment->setArticles(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCatagory(): Collection
+    {
+        return $this->Catagory;
+    }
+
+    public function addCatagory(Category $catagory): self
+    {
+        if (!$this->Catagory->contains($catagory)) {
+            $this->Catagory[] = $catagory;
+        }
+
+        return $this;
+    }
+
+    public function removeCatagory(Category $catagory): self
+    {
+        $this->Catagory->removeElement($catagory);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

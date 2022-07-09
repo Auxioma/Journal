@@ -214,18 +214,25 @@ class CategoryFixtures extends Fixture
             $category->setSlug($value['slug']);
             $category->setImage($value['picture']);
             $category->setIsValid('1');
+            $category->setCreatedAt(new \DateTimeImmutable());
+            $category->setUpdatedAt(new \DateTimeImmutable());
             $manager->persist($category);
 
-            foreach ($value['sc'] as $subcat) { 
+            foreach ($value['sc'] as $keyw => $subcat) { 
                 $subcategorie = new Category();
                 $subcategorie->setName($subcat['name']);
                 $subcategorie->setSlug($subcat['slug']);
                 $subcategorie->setImage($subcat['picture']);
                 $subcategorie->setIsValid('1');
                 $subcategorie->setSubCategory($category);
+                $subcategorie->setCreatedAt(new \DateTimeImmutable());
+                $subcategorie->setUpdatedAt(new \DateTimeImmutable());
                 $manager->persist($subcategorie);
+
+                $this->setReference('category_'.$keyw, $subcategorie);
             }
         }
         $manager->flush();
+        
     }
 }
