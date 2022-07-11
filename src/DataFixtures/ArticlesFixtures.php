@@ -29,6 +29,7 @@ class ArticlesFixtures extends Fixture implements DependentFixtureInterface
             $article->setSlug($this->slugger->slug($faker->sentence($r)));
             $article->setCreatedAt(new \DateTimeImmutable());
             $article->setUpdatedAt(new \DateTimeImmutable());
+            $article->setReading(rand(0, 5000));
 
             $category = $this->getReference('category_'.$faker->numberBetween(0, 2));
             $article->addCatagory($category);

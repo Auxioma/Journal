@@ -51,6 +51,9 @@ class Articles
     #[ORM\JoinColumn(nullable: false)]
     private $User;
 
+    #[ORM\Column(type: 'integer')]
+    private $Reading;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -227,6 +230,18 @@ class Articles
     public function setUser(?User $User): self
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    public function getReading(): ?int
+    {
+        return $this->Reading;
+    }
+
+    public function setReading(int $Reading): self
+    {
+        $this->Reading = $Reading;
 
         return $this;
     }

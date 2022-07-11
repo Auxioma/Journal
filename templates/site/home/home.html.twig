@@ -8,49 +8,71 @@
 
 <div class="container">
     <div class="row">
-        <section class="col-12">
+        <section class="col-12 information-in-line">
             <header class="row py-2"> 
                 <div class="col-11">
-                    <span>Trending Now</span>
-                    <span>Another Big Apartment Project Slated for Broad Ripple Company</span>
+                    <div class="owl-carousel">
+                        {% for random in random %}
+                            <div> 
+                                <span class="category me-3">{{ random.Catagory[0].Name|capitalize }}</span>
+                                <span class="title">{{ random.Description|u.truncate(125) }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="col-1">
-                    <a href=""><i class="fa-solid fa-angles-left"></i></a>
-                    <a href=""><i class="fa-solid fa-angles-right"></i></a>
+                    <a class="left" href=""><i class="fa-solid fa-angles-left"></i></a>
+                    <a class="right" href=""><i class="fa-solid fa-angles-right"></i></a>
                 </div>
-            </header>
-            
+            </header>    
+
             <article class="row slider">
                 <div class="col-6 p-1 position-relative">
-                    <img src="{{ asset('images/articles/slider-2.jpg') | imagine_filter('grand_slider_homepage') }}" alt="" title="" width="" height="" class="img-fluid">
+                    <div class="owl-carousel">
+                        {% for picture0 in slider[0].pictures %}
+                            <img src="{{ asset('images/articles/' ~ picture0.Name ) | imagine_filter('grand_slider_homepage') }}" alt="{{ slider[0].Catagory[0].Name|capitalize }}" title="{{ slider[0].Catagory[0].Name|capitalize }}" width="" height="" class="img-fluid">
+                        {% endfor %}
+                    </div>
                     <div class="meta-info position-absolute fixed-bottom">
-                        <span>Asiaverse</span>
-                        <p>Shy tome 9 : la mécanique du cœur</p>
+                        <span>{{ slider[0].Catagory[0].Name|capitalize }}</span>
+                        <p>{{ slider[0].Description|u.truncate(100) }}</p>
                     </div>                  
                 </div>
                 <div class="col-6 p-1">
                     <div class="row">
-                        <div class="col-12 position-relative">           
-                            <img src="{{ asset('images/articles/slider-2.jpg') | imagine_filter('medium_slider_homepage') }}" alt="" title="" width="" height="" class="img-fluid">
+                        <div class="col-12 position-relative">   
+                            <div class="owl-carousel">
+                                {% for picture1 in slider[1].pictures %}
+                                    <img src="{{ asset('images/articles/' ~ picture1.Name ) | imagine_filter('medium_slider_homepage') }}" alt="{{ slider[1].Catagory[0].Name|capitalize }}" title="{{ slider[1].Catagory[0].Name|capitalize }}" width="" height="" class="img-fluid">
+                                {% endfor %}
+                            </div>                           
                             <div class="meta-info position-absolute fixed-bottom">
-                                <span>Asiaverse</span>
-                                <p>Shy tome 9 : la mécanique du cœur</p>
+                                <span>{{ slider[1].Catagory[0].Name|capitalize }}</span>
+                                <p>{{ slider[1].Description|u.truncate(100) }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="row pt-2">
                         <div class="col-6 pe-1 position-relative">
-                            <img src="{{ asset('images/articles/slider-3.jpg') | imagine_filter('small_slider_homepage') }}" alt="" title="" width="" height="" class="img-fluid">
+                            <div class="owl-carousel">
+                                {% for picture2 in slider[2].pictures %}
+                                    <img src="{{ asset('images/articles/' ~ picture2.Name ) | imagine_filter('small_slider_homepage') }}" alt="{{ slider[2].Catagory[0].Name|capitalize }}" title="{{ slider[2].Catagory[0].Name|capitalize }}" width="" height="" class="img-fluid">
+                                {% endfor %}
+                            </div> 
                             <div class="meta-info position-absolute fixed-bottom">
-                                <span>Asiaverse</span>
-                                <p>Shy tome 9 : la mécanique du cœur</p>
+                                <span>{{ slider[2].Catagory[0].Name|capitalize }}</span>
+                                <p>{{ slider[2].Description|u.truncate(45) }}</p>
                             </div>
                         </div>
                         <div class="col-6 ps-1 position-relative">
-                            <img src="{{ asset('images/articles/slider-4.jpg') | imagine_filter('small_slider_homepage') }}" alt="" title="" width="" height="" class="img-fluid">
+                            <div class="owl-carousel">
+                                {% for picture in slider[3].pictures %}
+                                <img src="{{ asset('images/articles/slider-4.jpg') | imagine_filter('small_slider_homepage') }}" alt="{{ slider[3].Catagory[0].Name|capitalize }}" title="{{ slider[3].Catagory[0].Name|capitalize }}" width="" height="" class="img-fluid">
+                                {% endfor %}
+                            </div> 
                             <div class="meta-info position-absolute fixed-bottom">
-                                <span>Asiaverse</span>
-                                <p>Shy tome 9 : la mécanique du cœur</p>
+                                <span>{{ slider[3].Catagory[0].Name|capitalize }}</span>
+                                <p>{{ slider[3].Description|u.truncate(45) }}</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +81,6 @@
         </section>
     </div>
 </div>
-
 
 <!-- / Slider avec 4 images-->
 

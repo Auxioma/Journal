@@ -10,20 +10,34 @@ require('@fortawesome/fontawesome-free/js/all.js');
 
 require('owl.carousel');
 
-
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    nav:false,
+    pagination :false,
+    dots: false,
+    loop: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive:{
         0:{
             items:1
         },
         600:{
-            items:3
+            items:1
+        },            
+        960:{
+            items:1
         },
-        1000:{
-            items:5
+        1200:{
+            items:1
         }
     }
-})
+});
+owl.on('mousewheel', '.owl-stage', function (e) {
+    if (e.deltaY>0) {
+        owl.trigger('next.owl');
+    } else {
+        owl.trigger('prev.owl');
+    }
+    e.preventDefault();
+});

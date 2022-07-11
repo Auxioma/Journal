@@ -32,6 +32,42 @@ a {
     text-decoration: none!important;
 }
 
+// Information in the header
+.information-in-line {
+    & .category {
+        background-color: #222;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 2px 10px 1px;
+        display: inline-block;
+        line-height: 22px;
+        transition: background-color 0.3s;
+        cursor: default;
+        user-select: none;
+    }
+    & .title {
+        font-size: 15px;
+        line-height: 25px;
+        & a {
+            color: #111;
+        }
+    }
+    & .left, .right {
+        display: inline-block;
+        margin-right: 7px;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #dcdcdc;
+        line-height: 24px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 7px;
+        color: #b7b7b7;
+    }
+}
+
 // Header
 // ======
 .header {

@@ -39,6 +39,33 @@ class ArticlesRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Articles[] Returns an array of Articles objects
+     */
+    public function Affiche_Le_Slider_4_Articles(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.CreatedAt', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Articles[] Returns an array of Articles objects
+     */
+    public function findRandom(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.CreatedAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Articles[] Returns an array of Articles objects
 //     */
