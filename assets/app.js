@@ -1,4 +1,3 @@
-import './styles/app.scss';
 import './bootstrap';
 
 const $ = require('jquery');
@@ -7,8 +6,10 @@ global.$ = global.jQuery = $;
 require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
-
 require('owl.carousel');
+
+import './styles/app.scss';
+
 
 var owl = $('.owl-carousel');
 owl.owlCarousel({
@@ -34,7 +35,7 @@ owl.owlCarousel({
     }
 });
 owl.on('mousewheel', '.owl-stage', function (e) {
-    if (e.deltaY>0) {
+    if (e.deltaY > 0) {
         owl.trigger('next.owl');
     } else {
         owl.trigger('prev.owl');
